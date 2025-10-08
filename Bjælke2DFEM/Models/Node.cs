@@ -68,11 +68,6 @@ namespace Bjælke2DFEM.Models
         /// <summary>
         /// Vertikal forskydning - hvor meget noden bøjer op eller ned.
         /// 
-        /// Det er ligesom når du:
-        /// - Bøjer en lineal ved at trykke ned på den ene ende - den bøjer nedad
-        /// - Holder en træpind i den ene ende og hænger en vægt på den anden - spidsen bøjer nedad
-        /// - Kigger på en flagstang der bøjer i vinden
-        /// 
         /// Dette er den klassiske "bjælke bøjning" - præcis det samme som i 1D modeller.
         /// 
         /// Eksempel: 
@@ -83,13 +78,6 @@ namespace Bjælke2DFEM.Models
 
         /// <summary>
         /// Rotation - hvor meget noden "vipper" eller roterer.
-        /// 
-        /// Tænk på det som:
-        /// - En lineal der ikke bare bøjer, men også "vippes" - enden peger ikke vandret længere
-        /// - Som en vippe på en legeplads - den ene ende går op, den anden ned, og midten roterer
-        /// - En flagstang der ikke kun bøjer, men spidsen også "peger" i en anden retning
-        /// 
-        /// Præcis det samme som rotation i 1D bjælkemodeller - samme "vippe-effekt".
         /// 
         /// Eksempel:
         /// - 1m lineal med vægt på spidsen: spidsen bøjer 20mm ned OG roterer måske 0.02 radianer (~1 grad)

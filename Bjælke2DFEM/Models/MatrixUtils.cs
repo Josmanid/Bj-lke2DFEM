@@ -11,7 +11,9 @@ using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace Bjælke2DFEM.Models
 {
-   
+   /// <summary>
+   /// Hjælpe klasse gemt i den lokale hukommelse så den forsyne FEMSolver med de simple matematiske funtioner.
+   /// </summary>
 
     public static class MatrixUtils
     {
@@ -94,12 +96,12 @@ namespace Bjælke2DFEM.Models
         }
 
         public static double[] SolveLinearSystem(double[,] A, double[] b) {
-            var matrix = DenseMatrix.OfArray(A); // Convert 2D array to Math.NET DenseMatrix
-            var vector = DenseVector.OfArray(b); // Convert 1D array to DenseVector
+            var matrix = DenseMatrix.OfArray(A); // Konverter 2D array to Math.NET DenseMatrix
+            var vector = DenseVector.OfArray(b); // Konverter 1D array to DenseVector
 
-            //Solve Ax = b for x, where A=Matrix(reduced global stiffness matrix),
+            //Solve Ax = b for x, hvor A=Matrix(reduced global stiffness matrix),
             //b=vector(reduced force vector) and x=result(unknown displacements)
-            //it uses not inverse(too slow) it uses LU decomposition to solve it.
+            //Der benyttes ikke inverse(too slow) tilgengæld LU decomposition for effektiv beregning.
             var result = matrix.Solve(vector); 
             return result.ToArray();
         }
