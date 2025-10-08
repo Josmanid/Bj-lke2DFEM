@@ -61,7 +61,7 @@ namespace Bjælke2DFEM.Models
             {
                 BeamElement elem = mesh.Elements[e];
                 double[,] k_local = elem.GetLocalStiffnessMatrix(); // fra BeamELement klassen
-                double phi = elem.Angle; // angle in radians, you must have this stored in BeamElement
+                double phi = elem.Angle; // vinklen i radianer,
                 double[,] k_global_elem = MatrixUtils.TransformLocalToGlobal(k_local, phi);
 
                 int i = elem.StartNode.Id;
@@ -85,8 +85,9 @@ namespace Bjælke2DFEM.Models
             double[] f_reduced = MatrixUtils.ExtractSubvector(forceVector, freeDofs);
 
             double[] d_reduced = MatrixUtils.SolveLinearSystem(K_reduced, f_reduced);
-            // loop is for putting the solved reduced displacement vector
-            // d_reduced back into the full displacements vector at the correct DOF positions.
+            // Denne loop fylder det globale displacement-array med de løste værdier fra det reducerede system,
+            // så hele strukturen kan repræsenteres i ét array.
+
             for (int i = 0; i < freeDofs.Length; i++)
                 displacements[freeDofs[i]] = d_reduced[i];
         }

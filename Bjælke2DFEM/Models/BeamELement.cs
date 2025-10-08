@@ -26,7 +26,7 @@ namespace Bjælke2DFEM.Models
         public double E { get; } // Young's Modulus (materialets stivhed – fx stål = 200 GPa)
         public double I { get; } //Arealinertimoment (bjælkens modstand mod bøjning)
         public double A { get; }  // Tværsnitsareal altså tykkelse, bredde eller højde — til bjælken.
-        //You already compute Length. Add an Angle property so the solver can call the helper:
+        //beregner allerede Length. Vinklen her er bare udgangspunktet
         public double Angle => Math.Atan2(EndNode.Y - StartNode.Y, EndNode.X - StartNode.X);
 
 

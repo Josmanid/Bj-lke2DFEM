@@ -19,25 +19,25 @@ namespace Bjælke2DFEM.Models
     {
 
         public static double[,] TransformLocalToGlobal(double[,] kLocal, double phi) {
-            //Calculate rotation values
+            //Beregn rotations værdier
             double c = Math.Cos(phi);
             double s = Math.Sin(phi);
 
             // Transformation matrix (6x6 for 2D beam)
             double[,] T = new double[,]
             {
-        {  c,  s, 0, 0, 0, 0 }, // Node 1: transform local ux to global X,Y
-        { -s,  c, 0, 0, 0, 0 }, // Node 1: transform local uy to global X,Y
-        {  0,  0, 1, 0, 0, 0 }, // Node 1: rotation θz unchanged
-        {  0,  0, 0,  c, s, 0 }, // Node 2: transform local ux to global X,Y
-        {  0,  0, 0, -s, c, 0 }, // Node 2: transform local uy to global X,Y
-        {  0,  0, 0,  0, 0, 1 }  // Node 2: rotation θz unchanged
+        {  c,  s, 0, 0, 0, 0 }, // Node 1: transform local ux til global X,Y
+        { -s,  c, 0, 0, 0, 0 }, // Node 1: transform local uy til global X,Y
+        {  0,  0, 1, 0, 0, 0 }, // Node 1: rotation θz uændret
+        {  0,  0, 0,  c, s, 0 }, // Node 2: transform local ux til global X,Y
+        {  0,  0, 0, -s, c, 0 }, // Node 2: transform local uy til global X,Y
+        {  0,  0, 0,  0, 0, 1 }  // Node 2: rotation θz uændret
             };
             //Matrix multiplication
             var Tmat = DenseMatrix.OfArray(T);
             var Klocal = DenseMatrix.OfArray(kLocal);
             var Kglobal = Tmat.Transpose() * Klocal * Tmat;
-            //Returns the transformed global stiffness matrix as a normal 2D array.
+            //Returnerer the transformed global stiffness matrix til en normal 2D array.
             return Kglobal.ToArray();
         }
 
